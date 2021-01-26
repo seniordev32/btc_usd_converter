@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         APIManager.shared.getPriceRatio { (ratio) in
             DispatchQueue.main.async {
                 SwiftSpinner.hide()
-                self.initForm(ratio)
+                self.initForm(ratio, true)
             }
         }
 
@@ -42,12 +42,14 @@ class ViewController: UIViewController {
         }
     }
 
-    private func initForm(_ ratio: Float) {
+    private func initForm(_ ratio: Float, _ isFirst: Bool = false) {
         errorView.isHidden = APIManager.shared.latestRatio > 0
         if errorView.isHidden {
             excForm.isHidden = false
             lbError.isHidden = ratio > 0
-            setDefaultValues()
+            if isFirst {
+                setDefaultValues()
+            }
         }
     }
     
@@ -94,21 +96,5 @@ extension ViewController: UITextFieldDelegate {
         let floatExPredicate = NSPredicate(format:"SELF MATCHES %@", floatRegEx)
 
         return floatExPredicate.evaluate(with: newString)
-    }
-}
-
-extension String {
-    func isValidDouble(_ maxDecimalPlaces: Int) -> Bool {
-        let formatter = NumberFormatter()
-        formatter.allowsFloats = true
-        let decimalSeparator = formatter.decimalSeparator ?? "."
-        
-        if formatter.number(from: self) != nil {
-            let split = components(separatedBy: decimalSeparator)
-            let digits = split.count == 2 ? split.last ?? "" : ""
-            return digits.count <= maxDecimalPlaces
-        }
-
-        return false
     }
 }
