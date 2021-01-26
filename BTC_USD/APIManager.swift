@@ -16,8 +16,7 @@ class APIManager: NSObject {
     
     var latestRatio: Float {
         get {
-            let value = UserDefaults.standard.float(forKey: "ratio")
-            return value == 0 ? 1 : value
+            return UserDefaults.standard.float(forKey: "ratio")
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "ratio")
@@ -36,8 +35,9 @@ class APIManager: NSObject {
                 let ratio = (jsonBody["bitcoin"] as! [String: Any])["usd"] as! Float
                 self.latestRatio = ratio
                 completion(ratio)
+            } else {
+                completion(0)
             }
-            
         }
     }
 }

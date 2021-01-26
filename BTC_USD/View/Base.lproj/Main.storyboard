@@ -49,7 +49,6 @@
                                             <constraint firstAttribute="trailing" secondItem="EBm-i6-QYD" secondAttribute="trailing" constant="12" id="2Dj-QP-hYS"/>
                                             <constraint firstItem="EBm-i6-QYD" firstAttribute="leading" secondItem="QzL-Am-yOp" secondAttribute="trailing" constant="24" id="E2l-8R-435"/>
                                             <constraint firstItem="QzL-Am-yOp" firstAttribute="centerY" secondItem="HSd-aw-HAO" secondAttribute="centerY" id="YcM-ai-82n"/>
-                                            <constraint firstAttribute="height" constant="60" id="lJ9-kK-fBt"/>
                                             <constraint firstItem="EBm-i6-QYD" firstAttribute="centerY" secondItem="HSd-aw-HAO" secondAttribute="centerY" constant="1" id="rCH-nC-D3U"/>
                                             <constraint firstItem="QzL-Am-yOp" firstAttribute="leading" secondItem="HSd-aw-HAO" secondAttribute="leading" constant="24" id="vJp-gD-DvK"/>
                                         </constraints>
@@ -75,6 +74,7 @@
                                         <constraints>
                                             <constraint firstItem="PRe-P2-bLW" firstAttribute="centerX" secondItem="NXK-Vs-9Oy" secondAttribute="centerX" id="6lj-pk-zO2"/>
                                             <constraint firstItem="PRe-P2-bLW" firstAttribute="centerY" secondItem="NXK-Vs-9Oy" secondAttribute="centerY" id="Och-Yf-rIF"/>
+                                            <constraint firstAttribute="height" constant="60" id="S8z-Qb-P4j"/>
                                         </constraints>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Vk-gu-CSL">
@@ -117,30 +117,70 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.054901960784313725" green="0.066666666666666666" blue="0.094117647058823528" alpha="0.39726027400000002" colorSpace="calibratedRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="_layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="_layer.masksToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                             </stackView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuP-VO-tdN">
+                                <rect key="frame" x="57.5" y="578" width="299.5" height="41"/>
+                                <string key="text">Failed to connect Coingecko API.
+You'e using the previously saved ratio.</string>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62V-HA-vXO">
+                                <rect key="frame" x="78.5" y="402.5" width="257.5" height="91"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exchange" translatesAutoresizingMaskIntoConstraints="NO" id="FiB-0N-gop">
+                                        <rect key="frame" x="103.5" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="RLH-SJ-JTX"/>
+                                            <constraint firstAttribute="width" constant="50" id="tud-vG-UO1"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Failed to connect Coingecko API." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oss-8y-c7k">
+                                        <rect key="frame" x="0.0" y="70" width="257.5" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="rB2-Nn-dqJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Oss-8y-c7k" secondAttribute="trailing" id="FKy-Lh-ajM"/>
+                                    <constraint firstItem="FiB-0N-gop" firstAttribute="top" secondItem="62V-HA-vXO" secondAttribute="top" id="HkI-oE-7Ew"/>
+                                    <constraint firstItem="Oss-8y-c7k" firstAttribute="leading" secondItem="62V-HA-vXO" secondAttribute="leading" id="MCN-pE-sVS"/>
+                                    <constraint firstItem="Oss-8y-c7k" firstAttribute="top" secondItem="FiB-0N-gop" secondAttribute="bottom" constant="20" id="PvM-uS-Xpg"/>
+                                    <constraint firstItem="FiB-0N-gop" firstAttribute="centerX" secondItem="62V-HA-vXO" secondAttribute="centerX" id="b2U-KT-4C7"/>
+                                    <constraint firstAttribute="bottom" secondItem="Oss-8y-c7k" secondAttribute="bottom" id="sOG-xo-4Q5"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="4iO-Jy-9go" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6PD-FN-Tpv"/>
                             <constraint firstAttribute="trailing" secondItem="wau-42-4K5" secondAttribute="trailing" id="83I-TB-SMd"/>
+                            <constraint firstItem="62V-HA-vXO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KOo-HX-4eL"/>
                             <constraint firstAttribute="bottom" secondItem="wau-42-4K5" secondAttribute="bottom" id="LWK-ph-Zug"/>
+                            <constraint firstItem="TuP-VO-tdN" firstAttribute="top" secondItem="4iO-Jy-9go" secondAttribute="bottom" constant="20" id="LX7-WB-tUE"/>
+                            <constraint firstItem="62V-HA-vXO" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="QVd-Vz-MS5"/>
                             <constraint firstItem="4iO-Jy-9go" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vtc-gY-dfD"/>
                             <constraint firstItem="wau-42-4K5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cfv-DN-Gmo"/>
+                            <constraint firstItem="TuP-VO-tdN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="duh-sy-dGd"/>
                             <constraint firstItem="wau-42-4K5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="g0A-ie-B2c"/>
                             <constraint firstItem="4iO-Jy-9go" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="rYW-Se-Irj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="excForm" destination="4iO-Jy-9go" id="t2Q-rX-5Ig"/>
+                        <outlet property="btcView" destination="HSd-aw-HAO" id="Zmg-LO-Zxe"/>
+                        <outlet property="errorView" destination="62V-HA-vXO" id="C3Z-NH-Qxj"/>
+                        <outlet property="excForm" destination="4iO-Jy-9go" id="Mah-Th-nAM"/>
+                        <outlet property="lbError" destination="TuP-VO-tdN" id="6GN-ZI-q0T"/>
                         <outlet property="tfBtcAmount" destination="EBm-i6-QYD" id="iJn-KQ-guQ"/>
                         <outlet property="tfUsdAmount" destination="DUL-44-eCx" id="HGD-I8-a2l"/>
+                        <outlet property="usdView" destination="5Vk-gu-CSL" id="AFd-AN-HbC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

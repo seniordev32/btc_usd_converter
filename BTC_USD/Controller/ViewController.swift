@@ -12,9 +12,13 @@ import SwiftSpinner
 class ViewController: UIViewController {
 
     @IBOutlet weak var excForm: UIStackView!
+    @IBOutlet weak var lbError: UILabel!
     @IBOutlet weak var tfBtcAmount: UITextField!
     @IBOutlet weak var tfUsdAmount: UITextField!
-
+    @IBOutlet weak var btcView: UIView!
+    @IBOutlet weak var usdView: UIView!
+    @IBOutlet weak var errorView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -25,23 +29,29 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
 
         APIManager.shared.getPriceRatio { (ratio) in
-            if self.tfBtcAmount.text!.isEmpty && self.tfUsdAmount.text!.isEmpty {
-                DispatchQueue.main.async {
-                    self.setDefaultValues(true)
-                }
+            DispatchQueue.main.async {
+                SwiftSpinner.hide()
+                self.initForm(ratio)
             }
         }
 
         Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (timer) in
-            APIManager.shared.getPriceRatio { (_) in }
+            APIManager.shared.getPriceRatio { (ratio) in
+                DispatchQueue.main.async { self.initForm(ratio) }
+            }
         }
     }
 
-    private func setDefaultValues(_ isFirst: Bool = false) {
-        if isFirst {
-            SwiftSpinner.hide()
+    private func initForm(_ ratio: Float) {
+        errorView.isHidden = APIManager.shared.latestRatio > 0
+        if errorView.isHidden {
             excForm.isHidden = false
+            lbError.isHidden = ratio > 0
+            setDefaultValues()
         }
+    }
+    
+    private func setDefaultValues() {
         tfBtcAmount.text = "1"
         tfUsdAmount.text = "\(APIManager.shared.latestRatio)"
     }
@@ -76,9 +86,6 @@ class ViewController: UIViewController {
 extension ViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string.isEmpty { return true }
-//        let text = textField.text ?? ""
-//        let replacementText = (text as NSString).replacingCharacters(in: range, with: string)
-//        return replacementText.isValidDouble(10)
 
         let textFieldString = textField.text! as NSString;
         let newString = textFieldString.replacingCharacters(in: range, with:string)
